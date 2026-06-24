@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código Completo - Tutorial Lu</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .archivo-tabs {
+            display: flex;
+            gap: 0;
+            margin: 25px 0 0;
+            flex-wrap: wrap;
+        }
+        .archivo-tabs a {
+            padding: 10px 18px;
+            background: #E8ECF1;
+            color: #2C3E50;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 10px 10px 0 0;
+            margin-right: 4px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .archivo-tabs a.activo-tab {
+            background: #1E1E2E;
+            color: #CDD6F4;
+        }
+        .archivo-tabs a:hover:not(.activo-tab) {
+            background: #D1D8E0;
+        }
+        .codigo-archivo {
+            display: none;
+        }
+        .codigo-archivo.mostrar {
+            display: block;
+        }
+        .toolbar-archivo {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .btn-accion {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-copiar {
+            background: #E8ECF1;
+            color: #2C3E50;
+        }
+        .btn-copiar:hover {
+            background: #D1D8E0;
+        }
+        .btn-copiar.copiado {
+            background: #66BB6A;
+            color: #fff;
+        }
+        .btn-descargar {
+            background: #6C63FF;
+            color: #fff;
+        }
+        .btn-descargar:hover {
+            background: #5A52E0;
+        }
+        .btn-descargar-todo {
+            background: #FF6B6B;
+            color: #fff;
+            padding: 14px 28px;
+            font-size: 1rem;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .btn-descargar-todo:hover {
+            background: #E55555;
+        }
+        .nombre-archivo {
+            font-weight: 700;
+            color: #FF6B6B;
+            margin: 0 0 4px;
+            font-size: 1rem;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #2C3E50;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transition: 0.4s;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .toast.mostrar {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="barra-progreso">
+        <div class="contenedor">
+            <a href="index.html" class="logo-tuto">✨ Tutorial Lu</a>
+            <div class="pasos">
+                <a href="index.html">Inicio</a>
+                <a href="paso1.html">1. Conceptos</a>
+                <a href="paso2.html">2. HTML</a>
+                <a href="paso3.html">3. CSS</a>
+                <a href="paso4.html">4. GitHub</a>
+                <a href="template.html" class="activo">Código</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="seccion">
+        <div class="contenedor">
+
+            <h2>💻 Código completo del proyecto</h2>
+            <p class="subtitulo">Elegí un archivo, copialo o descargalo. Todo listo para usar.</p>
+
+            <!-- Botón descargar todo -->
+            <div style="text-align:center;margin-bottom:10px">
+                <button class="btn btn-descargar-todo" onclick="descargarTodo()">📥 Descargar todos los archivos</button>
+                <p style="font-size:0.85rem;color:#7F8C9B;margin-top:6px">Se descargarán los 5 archivos uno por uno</p>
+            </div>
+
+            <!-- TABS -->
+            <div class="archivo-tabs" id="tabs">
+                <a class="activo-tab" data-file="index">index.html</a>
+                <a data-file="proyectos">proyectos.html</a>
+                <a data-file="contacto">contacto.html</a>
+                <a data-file="style">style.css</a>
+                <a data-file="readme">README.md</a>
+            </div>
+
+            <!-- ==================== index.html ==================== -->
+            <div class="codigo-archivo mostrar" id="file-index">
+                <p class="nombre-archivo">📄 index.html — Página de inicio</p>
+                <div class="toolbar-archivo">
+                    <button class="btn-accion btn-copiar" onclick="copiar('index')">📋 Copiar código</button>
+                    <button class="btn-accion btn-descargar" onclick="descargar('index')">⬇️ Descargar archivo</button>
+                </div>
+                <pre><code id="codigo-index"></code></pre>
+            </div>
+
+            <!-- ==================== proyectos.html ==================== -->
+            <div class="codigo-archivo" id="file-proyectos">
+                <p class="nombre-archivo">📄 proyectos.html — Página de proyectos con tabla</p>
+                <div class="toolbar-archivo">
+                    <button class="btn-accion btn-copiar" onclick="copiar('proyectos')">📋 Copiar código</button>
+                    <button class="btn-accion btn-descargar" onclick="descargar('proyectos')">⬇️ Descargar archivo</button>
+                </div>
+                <pre><code id="codigo-proyectos"></code></pre>
+            </div>
+
+            <!-- ==================== contacto.html ==================== -->
+            <div class="codigo-archivo" id="file-contacto">
+                <p class="nombre-archivo">📄 contacto.html — Página de contacto con formulario</p>
+                <div class="toolbar-archivo">
+                    <button class="btn-accion btn-copiar" onclick="copiar('contacto')">📋 Copiar código</button>
+                    <button class="btn-accion btn-descargar" onclick="descargar('contacto')">⬇️ Descargar archivo</button>
+                </div>
+                <pre><code id="codigo-contacto"></code></pre>
+            </div>
+
+            <!-- ==================== style.css ==================== -->
+            <div class="codigo-archivo" id="file-style">
+                <p class="nombre-archivo">📄 css/style.css — Todos los estilos CSS</p>
+                <div class="toolbar-archivo">
+                    <button class="btn-accion btn-copiar" onclick="copiar('style')">📋 Copiar código</button>
+                    <button class="btn-accion btn-descargar" onclick="descargar('style')">⬇️ Descargar archivo</button>
+                </div>
+                <pre><code id="codigo-style"></code></pre>
+            </div>
+
+            <!-- ==================== README.md ==================== -->
+            <div class="codigo-archivo" id="file-readme">
+                <p class="nombre-archivo">📄 README.md — Documentación del proyecto</p>
+                <div class="toolbar-archivo">
+                    <button class="btn-accion btn-copiar" onclick="copiar('readme')">📋 Copiar código</button>
+                    <button class="btn-accion btn-descargar" onclick="descargar('readme')">⬇️ Descargar archivo</button>
+                </div>
+                <pre><code id="codigo-readme"></code></pre>
+            </div>
+
+            <!-- Cómo armar el proyecto -->
+            <div style="margin-top:40px">
+                <h3>📁 Cómo armar la carpeta del proyecto</h3>
+                <p>Después de descargar los archivos, creá esta estructura en tu computadora:</p>
+                <div class="destacado info">
+<pre><code>tu-proyecto/
+├── index.html
+├── proyectos.html
+├── contacto.html
+├── css/
+│   └── style.css
+├── imagenes/        (opcional: tus fotos)
+└── README.md</code></pre>
+                    <p style="margin:10px 0 0">Abrí cada archivo con el bloc de notas y pegá el código que copiaste. ¡Listo!</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="contenedor">
+        <div class="nav-paginas">
+            <a href="paso4.html" class="anterior">← Paso 4: GitHub</a>
+            <a href="index.html" class="siguiente">Volver al inicio →</a>
+        </div>
+    </div>
+
+    <footer class="footer-tuto">
+        <div class="contenedor">
+            <p>Hecho con ♥ para Lu — Proyecto final de Programación Web</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============================================
+        // CONTENIDO DE CADA ARCHIVO (en JavaScript puro)
+        // ============================================
+
+        const ARCHIVOS = {
+            index: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - Inicio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="contenedor">
+            <a href="index.html" class="logo">Lu Studio</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="activo">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="contenedor">
+            <h1>Hola, soy Lu</h1>
+            <p>Diseñadora gráfica y desarrolladora web en formación.</p>
+            <a href="proyectos.html" class="btn">Ver mis proyectos</a>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <div class="contenedor">
+            <h2>Sobre mí</h2>
+            <div class="dos-columnas">
+                <div class="columna">
+                    <p>Soy estudiante de diseño y programación web. Me encanta crear sitios web que cuenten historias.</p>
+                </div>
+                <div class="columna">
+                    <p>Este es mi primer proyecto web hecho con HTML y CSS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion fondo-claro">
+        <div class="contenedor">
+            <h2>Mis habilidades</h2>
+            <div class="tres-columnas">
+                <div class="tarjeta">
+                    <h3>Diseño gráfico</h3>
+                    <p>Creación de logos y piezas visuales.</p>
+                </div>
+                <div class="tarjeta">
+                    <h3>HTML & CSS</h3>
+                    <p>Maquetación de sitios web responsivos.</p>
+                </div>
+                <div class="tarjeta">
+                    <h3>Creatividad</h3>
+                    <p>Ideas originales para proyectos reales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>`,
+
+            proyectos: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - Proyectos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="contenedor">
+            <a href="index.html" class="logo">Lu Studio</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html" class="activo">Proyectos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero hero-pequeno">
+        <div class="contenedor">
+            <h1>Mis proyectos</h1>
+            <p>Conocé los trabajos que fui realizando.</p>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <div class="contenedor">
+            <h2>Proyectos destacados</h2>
+            <div class="tres-columnas">
+                <article class="tarjeta-proyecto">
+                    <h3>Branding para cafetería</h3>
+                    <p>Identidad visual completa.</p>
+                </article>
+                <article class="tarjeta-proyecto">
+                    <h3>Landing page evento</h3>
+                    <p>Sitio promocional responsivo.</p>
+                </article>
+                <article class="tarjeta-proyecto">
+                    <h3>Rediseño de blog</h3>
+                    <p>Modernización de interfaz.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion fondo-claro">
+        <div class="contenedor">
+            <h2>Tabla de servicios y precios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Diseño de logo</td>
+                        <td>Logo profesional con 3 propuestas</td>
+                        <td>$15.000</td>
+                    </tr>
+                    <tr>
+                        <td>Landing page</td>
+                        <td>Página web responsiva</td>
+                        <td>$25.000</td>
+                    </tr>
+                    <tr>
+                        <td>Sitio web completo</td>
+                        <td>Hasta 5 páginas HTML</td>
+                        <td>$50.000</td>
+                    </tr>
+                    <tr>
+                        <td>Branding completo</td>
+                        <td>Logo, colores y piezas gráficas</td>
+                        <td>$35.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>`,
+
+            contacto: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - Contacto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="contenedor">
+            <a href="index.html" class="logo">Lu Studio</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="contacto.html" class="activo">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero hero-pequeno">
+        <div class="contenedor">
+            <h1>Contactame</h1>
+            <p>Completá el formulario y te respondo a la brevedad.</p>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <div class="contenedor">
+            <h2>Formulario de contacto</h2>
+            <form action="#" method="POST">
+
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+                <button type="submit" class="btn">Enviar mensaje</button>
+
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>`,
+
+            style: `/* === RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fff;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* === CABECERA === */
+header {
+    background: #2D2D3A;
+    padding: 15px 0;
+}
+
+header .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #6C63FF;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+nav a.activo {
+    color: #6C63FF;
+    border-bottom: 2px solid #6C63FF;
+}
+
+/* === HERO === */
+.hero {
+    background: linear-gradient(135deg, #6C63FF, #FF6584);
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: fadeIn 0.8s ease;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    animation: fadeIn 0.8s ease 0.2s both;
+}
+
+.hero .btn {
+    animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.hero-pequeno {
+    padding: 60px 0;
+}
+
+.hero-pequeno h1 {
+    font-size: 2.2rem;
+}
+
+/* === BOTONES === */
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #6C63FF;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* === SECCIONES === */
+.seccion {
+    padding: 60px 0;
+}
+
+.fondo-claro {
+    background: #F5F5FA;
+}
+
+.seccion h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2D2D3A;
+    margin-bottom: 40px;
+}
+
+/* === COLUMNAS === */
+.dos-columnas {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.columna {
+    flex: 1;
+}
+
+.tres-columnas {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* === TARJETAS === */
+.tarjeta {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 250px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.tarjeta:nth-child(1) { animation-delay: 0s; }
+.tarjeta:nth-child(2) { animation-delay: 0.2s; }
+.tarjeta:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tarjeta h3 {
+    color: #6C63FF;
+    margin-bottom: 10px;
+}
+
+.tarjeta-proyecto {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 250px;
+}
+
+.tarjeta-proyecto h3 {
+    color: #2D2D3A;
+    margin-bottom: 8px;
+}
+
+/* === TABLA === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+thead {
+    background: #6C63FF;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr {
+    transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #F0EFFF;
+}
+
+/* === FORMULARIO === */
+form label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2D2D3A;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #6C63FF;
+    outline: none;
+}
+
+form .btn {
+    margin-top: 20px;
+}
+
+/* === FOOTER === */
+footer {
+    background: #2D2D3A;
+    color: #ccc;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+
+    header .contenedor {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .dos-columnas {
+        flex-direction: column;
+    }
+
+    .tres-columnas {
+        flex-direction: column;
+    }
+
+    .tarjeta, .tarjeta-proyecto {
+        min-width: 100%;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}`,
+
+            readme: `# Nombre del proyecto
+
+[Escribí acá el nombre de su proyecto]
+
+## Descripción breve
+
+[Escribí acá de qué trata el sitio]
+
+## Integrantes del grupo
+
+| Nombre completo | Rol |
+|----------------|-----|
+| [Nombre] | [Rol] |
+| [Nombre] | [Rol] |
+
+## Instrucciones para visualizar
+
+1. Descargar o clonar el repositorio
+2. Abrir index.html en cualquier navegador
+3. Navegar usando el menú`
+        };
+
+        const NOMBRES_ARCHIVO = {
+            index: 'index.html',
+            proyectos: 'proyectos.html',
+            contacto: 'contacto.html',
+            style: 'style.css',
+            readme: 'README.md'
+        };
+
+        // ============================================
+        // MOSTRAR CÓDIGO EN LA PÁGINA (escapando HTML)
+        // ============================================
+        function escapeHtml(texto) {
+            return texto
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Cargar todos los códigos
+        for (const [key, contenido] of Object.entries(ARCHIVOS)) {
+            document.getElementById('codigo-' + key).textContent = contenido;
+        }
+
+        // ============================================
+        // TABS
+        // ============================================
+        const tabs = document.querySelectorAll('#tabs a');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('activo-tab'));
+                this.classList.add('activo-tab');
+                document.querySelectorAll('.codigo-archivo').forEach(f => f.classList.remove('mostrar'));
+                document.getElementById('file-' + this.dataset.file).classList.add('mostrar');
+            });
+        });
+
+        // ============================================
+        // COPIAR AL PORTAPAPELES
+        // ============================================
+        function copiar(id) {
+            const texto = ARCHIVOS[id];
+            navigator.clipboard.writeText(texto).then(() => {
+                mostrarToast('✅ Código de ' + NOMBRES_ARCHIVO[id] + ' copiado al portapapeles');
+            }).catch(() => {
+                mostrarToast('❌ No se pudo copiar. Probá seleccionando el código manualmente.');
+            });
+        }
+
+        // ============================================
+        // DESCARGAR ARCHIVO
+        // ============================================
+        function descargar(id) {
+            const contenido = ARCHIVOS[id];
+            const nombre = NOMBRES_ARCHIVO[id];
+            const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nombre;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            mostrarToast('⬇️ Descargando ' + nombre);
+        }
+
+        // ============================================
+        // DESCARGAR TODOS LOS ARCHIVOS
+        // ============================================
+        function descargarTodo() {
+            const orden = ['index', 'proyectos', 'contacto', 'style', 'readme'];
+            orden.forEach((id, i) => {
+                setTimeout(() => descargar(id), i * 500);
+            });
+            mostrarToast('⬇️ Descargando ' + orden.length + ' archivos...');
+        }
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function mostrarToast(mensaje) {
+            const toast = document.getElementById('toast');
+            toast.textContent = mensaje;
+            toast.classList.add('mostrar');
+            setTimeout(() => {
+                toast.classList.remove('mostrar');
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>

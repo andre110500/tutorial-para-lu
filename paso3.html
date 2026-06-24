@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paso 3 - CSS: Estilos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <div class="barra-progreso">
+        <div class="contenedor">
+            <a href="index.html" class="logo-tuto">✨ Tutorial Lu</a>
+            <div class="pasos">
+                <a href="index.html">Inicio</a>
+                <a href="paso1.html">1. Conceptos</a>
+                <a href="paso2.html">2. HTML</a>
+                <a href="paso3.html" class="activo">3. CSS</a>
+                <a href="paso4.html">4. GitHub</a>
+                <a href="template.html">Código</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="seccion">
+        <div class="contenedor">
+
+            <h2>🎨 Paso 3: Dar estilo con CSS</h2>
+            <p class="subtitulo">Acá vas a aprender a ponerle colores, ordenar las cosas y hacer que se vea bien en celular.</p>
+
+            <h3>🔗 Cómo conectar el CSS al HTML</h3>
+            <p>En el <code>&lt;head&gt;</code> de tu HTML tenés que poner esta línea:</p>
+<pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
+            <p>Esto le dice al HTML: "usá este archivo para los estilos".</p>
+
+            <h3>✏️ Cómo se escribe CSS</h3>
+<pre><code>/* Esto es un comentario en CSS */
+
+/* SELECCIONÁS algo y le ponés estilo */
+selector {
+    propiedad: valor;
+    propiedad: valor;
+}
+
+/* Ejemplos */
+h1 {
+    color: blue;        /* texto azul */
+    font-size: 32px;    /* tamaño 32 píxeles */
+}
+
+.destacado {
+    background: yellow; /* fondo amarillo */
+}
+
+#logo-principal {
+    width: 150px;       /* ancho 150 píxeles */
+}</code></pre>
+
+            <h3>🎯 Tipos de selectores</h3>
+            <p>Los selectores son cómo "apuntás" a los elementos para cambiarles el estilo:</p>
+
+            <div class="tabla-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Ejemplo</th>
+                            <th>¿Qué selecciona?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Etiqueta</strong></td>
+                            <td><code>h1 { ... }</code></td>
+                            <td>Todos los &lt;h1&gt; de la página</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clase</strong></td>
+                            <td><code>.tarjeta { ... }</code></td>
+                            <td>Todos los elementos con class="tarjeta"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ID</strong></td>
+                            <td><code>#menu { ... }</code></td>
+                            <td>El elemento con id="menu" (único)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>📱 Diseño responsivo (que se vea en celular)</h3>
+            <p>Con esta "receta" mágica tu sitio se adapta solo a celulares. Ponelo al final de tu CSS:</p>
+<pre><code>/* Para pantallas de hasta 768px (tablets y celulares) */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    /* Las columnas se apilan una abajo de otra */
+    .columnas {
+        flex-direction: column;
+    }
+
+    /* El menú se ordena en vertical */
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+}</code></pre>
+
+            <div class="destacado info">
+                <strong>📌 Explicación:</strong> <code>@media (max-width: 768px)</code> significa "si la pantalla es más chica que 768 píxeles (tamaño de un celular), aplicá estos estilos".
+            </div>
+
+            <h3>✨ Animaciones y transiciones</h3>
+            <p>Con esto tus tarjetas aparecen con un efecto suave. Primero definís la animación y después la aplicás:</p>
+
+            <h4>1. Definir la animación (ponelo en tu CSS):</h4>
+<pre><code>@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</code></pre>
+
+            <h4>2. Aplicarla a un elemento:</h4>
+<pre><code>.tarjeta {
+    animation: aparecer 0.8s ease forwards;
+}</code></pre>
+
+            <h4>Transiciones (efecto al pasar el mouse):</h4>
+<pre><code>.boton {
+    background: blue;
+    transition: background 0.3s ease;
+}
+
+.boton:hover {
+    background: darkblue;
+}</code></pre>
+            <p><code>:hover</code> = cuando pasás el mouse por encima.</p>
+
+            <h3>📐 Flexbox (para ordenar cosas)</h3>
+            <p>Flexbox es la forma más fácil de ordenar elementos en filas o columnas:</p>
+<pre><code>.contenedor-flex {
+    display: flex;          /* activa flexbox */
+    gap: 20px;              /* espacio entre elementos */
+    justify-content: center; /* centrar horizontalmente */
+    flex-wrap: wrap;        /* si no entra, baja a la siguiente línea */
+}</code></pre>
+
+            <div class="destacado exito">
+                <strong>💡 Resumen rápido de CSS:</strong>
+                <ul style="margin:8px 0 0 20px">
+                    <li>Todo va en el archivo <code>style.css</code> dentro de la carpeta <code>css/</code></li>
+                    <li>Usá clases (<code>.nombre</code>) para estilos que se repiten</li>
+                    <li>Usá ID (<code>#nombre</code>) para algo único</li>
+                    <li>El responsive se hace con <code>@media</code></li>
+                    <li>Las animaciones con <code>@keyframes</code> + <code>animation</code></li>
+                    <li>Los efectos hover con <code>:hover</code></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="contenedor">
+        <div class="nav-paginas">
+            <a href="paso2.html" class="anterior">← Paso 2: HTML</a>
+            <a href="paso4.html" class="siguiente">Paso 4: GitHub →</a>
+        </div>
+    </div>
+
+    <footer class="footer-tuto">
+        <div class="contenedor">
+            <p>Hecho con ♥ para Lu — Proyecto final de Programación Web</p>
+        </div>
+    </footer>
+
+</body>
+</html>

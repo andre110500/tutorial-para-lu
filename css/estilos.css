@@ -1,0 +1,447 @@
+/* ================================================
+   TUTORIAL WEB PARA LU - Estilos principales
+   ================================================ */
+
+/* === RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C3E50;
+    line-height: 1.7;
+    background: #F7F9FC;
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* === BARRA DE PROGRESO === */
+.barra-progreso {
+    background: #fff;
+    padding: 12px 0;
+    border-bottom: 2px solid #E8ECF1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.barra-progreso .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.barra-progreso .logo-tuto {
+    font-weight: 800;
+    color: #FF6B6B;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.pasos {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pasos a {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #E8ECF1;
+    color: #7F8C9B;
+    transition: 0.3s;
+}
+
+.pasos a.activo {
+    background: #FF6B6B;
+    color: #fff;
+}
+
+.pasos a:hover:not(.activo) {
+    background: #D1D8E0;
+}
+
+/* === HERO (página principal) === */
+.hero {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px 60px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero .btn {
+    animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+/* === BOTONES === */
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #FF6B6B;
+    padding: 14px 36px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn-secundario:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.btn-block {
+    display: block;
+    text-align: center;
+}
+
+/* === TARJETAS DE TEMAS === */
+.temas {
+    padding: 60px 0;
+}
+
+.temas h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #2C3E50;
+}
+
+.grid-temas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-tema {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    text-decoration: none;
+    color: #2C3E50;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta-tema:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.tarjeta-tema .icono {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.tarjeta-tema h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-tema p {
+    font-size: 0.9rem;
+    color: #7F8C9B;
+}
+
+/* === SECCIONES DE CONTENIDO === */
+.seccion {
+    padding: 50px 0;
+}
+
+.seccion h2 {
+    font-size: 1.8rem;
+    color: #2C3E50;
+    margin-bottom: 8px;
+}
+
+.seccion > .contenedor > p.subtitulo {
+    color: #7F8C9B;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+.seccion h3 {
+    font-size: 1.25rem;
+    color: #FF6B6B;
+    margin: 30px 0 10px;
+}
+
+.seccion h4 {
+    font-size: 1.05rem;
+    color: #2C3E50;
+    margin: 20px 0 8px;
+}
+
+.seccion p {
+    margin-bottom: 12px;
+}
+
+.seccion ul, .seccion ol {
+    margin: 10px 0 20px 20px;
+}
+
+.seccion li {
+    margin-bottom: 6px;
+}
+
+/* === CAJAS DE DESTAQUE === */
+.destacado {
+    background: #FFF3E0;
+    border-left: 4px solid #FF8E53;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.destacado.info {
+    background: #E3F2FD;
+    border-left-color: #42A5F5;
+}
+
+.destacado.exito {
+    background: #E8F5E9;
+    border-left-color: #66BB6A;
+}
+
+/* === BLOQUES DE CÓDIGO === */
+pre {
+    background: #1E1E2E;
+    color: #CDD6F4;
+    padding: 18px 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 15px 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+code {
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* === TABLA === */
+.tabla-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.tabla-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-wrapper th {
+    background: #FF6B6B;
+    color: #fff;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.tabla-wrapper td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #E8ECF1;
+}
+
+.tabla-wrapper tr:last-child td {
+    border-bottom: none;
+}
+
+/* === LISTA DE CHECKLIST === */
+.checklist {
+    list-style: none;
+    margin: 0 0 20px 0 !important;
+}
+
+.checklist li {
+    padding: 10px 15px 10px 40px;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    position: relative;
+}
+
+.checklist li::before {
+    content: "⬜";
+    position: absolute;
+    left: 12px;
+    top: 10px;
+}
+
+.checklist li.hecho::before {
+    content: "✅";
+}
+
+/* === BOTONES DE NAVEGACIÓN ENTRE PÁGINAS === */
+.nav-paginas {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 2px solid #E8ECF1;
+}
+
+.nav-paginas a {
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.nav-paginas .anterior {
+    color: #7F8C9B;
+    background: #E8ECF1;
+}
+
+.nav-paginas .anterior:hover {
+    background: #D1D8E0;
+}
+
+.nav-paginas .siguiente {
+    color: #fff;
+    background: #FF6B6B;
+}
+
+.nav-paginas .siguiente:hover {
+    background: #E55555;
+}
+
+/* === FOOTER === */
+.footer-tuto {
+    background: #2C3E50;
+    color: #BDC3C7;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+.footer-tuto p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* === SCROLL HORIZONTAL PARA CÓDIGO === */
+pre code {
+    white-space: pre;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .barra-progreso .contenedor {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pasos {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pasos a {
+        font-size: 0.72rem;
+        padding: 3px 10px;
+    }
+
+    .seccion {
+        padding: 30px 0;
+    }
+
+    .seccion h2 {
+        font-size: 1.4rem;
+    }
+
+    pre {
+        font-size: 0.78rem;
+        padding: 12px 14px;
+    }
+
+    .grid-temas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-temas {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-paginas {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .nav-paginas a {
+        text-align: center;
+    }
+}

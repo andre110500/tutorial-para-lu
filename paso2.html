@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paso 2 - Escribir HTML</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <div class="barra-progreso">
+        <div class="contenedor">
+            <a href="index.html" class="logo-tuto">✨ Tutorial Lu</a>
+            <div class="pasos">
+                <a href="index.html">Inicio</a>
+                <a href="paso1.html">1. Conceptos</a>
+                <a href="paso2.html" class="activo">2. HTML</a>
+                <a href="paso3.html">3. CSS</a>
+                <a href="paso4.html">4. GitHub</a>
+                <a href="template.html">Código</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="seccion">
+        <div class="contenedor">
+
+            <h2>📝 Paso 2: Escribir el HTML</h2>
+            <p class="subtitulo">Acá te explico cada parte del HTML que necesitás para tu proyecto.</p>
+
+            <h3>📄 Estructura básica de todo HTML</h3>
+            <p>Toda página HTML empieza con esta estructura (copiala siempre):</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Título de tu página&lt;/title&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ← Acá va todo el contenido →
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <p>Explicación rápida:</p>
+            <ul>
+                <li><code>&lt;head&gt;</code>: información interna (título, estilos)</li>
+                <li><code>&lt;body&gt;</code>: todo lo que se ve en la página</li>
+                <li><code>&lt;link rel="stylesheet"&gt;</code>: conecta el CSS</li>
+            </ul>
+
+            <h3>🏠 Cabecera (header) con menú de navegación</h3>
+            <p>Esta parte va arriba de todo y tiene el logo + los links a las páginas:</p>
+<pre><code>&lt;header&gt;
+    &lt;div class="contenedor"&gt;
+        &lt;a href="index.html" class="logo"&gt;Mi Sitio&lt;/a&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="index.html"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="proyectos.html"&gt;Proyectos&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+
+            <h3>📊 Tabla de precios o servicios</h3>
+            <p>La tabla es obligatoria. Acá un ejemplo de tabla de precios:</p>
+<pre><code>&lt;h2&gt;Tabla de precios&lt;/h2&gt;
+
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Servicio&lt;/th&gt;
+            &lt;th&gt;Descripción&lt;/th&gt;
+            &lt;th&gt;Precio&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Diseño de logo&lt;/td&gt;
+            &lt;td&gt;Logo profesional&lt;/td&gt;
+            &lt;td&gt;$15.000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Sitio web&lt;/td&gt;
+            &lt;td&gt;5 páginas HTML&lt;/td&gt;
+            &lt;td&gt;$50.000&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+            <div class="destacado">
+                <strong>📌 Explicación:</strong>
+                <ul style="margin:8px 0 0 20px">
+                    <li><code>&lt;table&gt;</code> crea la tabla</li>
+                    <li><code>&lt;thead&gt;</code> = fila de encabezados (títulos)</li>
+                    <li><code>&lt;tbody&gt;</code> = filas con datos</li>
+                    <li><code>&lt;tr&gt;</code> = una fila</li>
+                    <li><code>&lt;th&gt;</code> = celda de título (negrita)</li>
+                    <li><code>&lt;td&gt;</code> = celda normal</li>
+                </ul>
+            </div>
+
+            <h3>📋 Formulario de contacto</h3>
+            <p>El formulario también es obligatorio. Acá el ejemplo completo:</p>
+<pre><code>&lt;h2&gt;Contactame&lt;/h2&gt;
+
+&lt;form action="#" method="POST"&gt;
+
+    &lt;label for="nombre"&gt;Nombre&lt;/label&gt;
+    &lt;input type="text" id="nombre" name="nombre" required&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;label for="mensaje"&gt;Mensaje&lt;/label&gt;
+    &lt;textarea id="mensaje" name="mensaje" rows="5" required&gt;&lt;/textarea&gt;
+
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+            <div class="destacado">
+                <strong>📌 Explicación:</strong>
+                <ul style="margin:8px 0 0 20px">
+                    <li><code>&lt;form&gt;</code> crea el formulario</li>
+                    <li><code>&lt;label&gt;</code> = texto que explica el campo</li>
+                    <li><code>&lt;input&gt;</code> = campo donde se escribe</li>
+                    <li><code>&lt;textarea&gt;</code> = campo grande para mensajes</li>
+                    <li><code>&lt;button type="submit"&gt;</code> = botón de enviar</li>
+                    <li><code>required</code> = el campo es obligatorio</li>
+                </ul>
+            </div>
+
+            <h3>🦶 Pie de página (footer)</h3>
+            <p>Va al final de todas las páginas:</p>
+<pre><code>&lt;footer&gt;
+    &lt;div class="contenedor"&gt;
+        &lt;p&gt;&amp;copy; 2026 Mi Sitio. Todos los derechos reservados.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+
+            <div class="destacado exito">
+                <strong>💡 Tips:</strong>
+                <ul style="margin:8px 0 0 20px">
+                    <li>Usá <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> (son etiquetas semánticas, suman puntos)</li>
+                    <li>El atributo <code>class="..."</code> sirve para darle estilo con CSS después</li>
+                    <li>El atributo <code>id="..."</code> es como el DNI de un elemento (único)</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="contenedor">
+        <div class="nav-paginas">
+            <a href="paso1.html" class="anterior">← Paso 1: Conceptos</a>
+            <a href="paso3.html" class="siguiente">Paso 3: CSS →</a>
+        </div>
+    </div>
+
+    <footer class="footer-tuto">
+        <div class="contenedor">
+            <p>Hecho con ♥ para Lu — Proyecto final de Programación Web</p>
+        </div>
+    </footer>
+
+</body>
+</html>

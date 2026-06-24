@@ -1,0 +1,312 @@
+/* === RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fff;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* === CABECERA === */
+header {
+    background: #2D2D3A;
+    padding: 15px 0;
+}
+
+header .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #6C63FF;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+nav a.activo {
+    color: #6C63FF;
+    border-bottom: 2px solid #6C63FF;
+}
+
+/* === HERO === */
+.hero {
+    background: linear-gradient(135deg, #6C63FF, #FF6584);
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: fadeIn 0.8s ease;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    animation: fadeIn 0.8s ease 0.2s both;
+}
+
+.hero .btn {
+    animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.hero-pequeno {
+    padding: 60px 0;
+}
+
+.hero-pequeno h1 {
+    font-size: 2.2rem;
+}
+
+/* === BOTONES === */
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #6C63FF;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* === SECCIONES === */
+.seccion {
+    padding: 60px 0;
+}
+
+.fondo-claro {
+    background: #F5F5FA;
+}
+
+.seccion h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2D2D3A;
+    margin-bottom: 40px;
+}
+
+/* === COLUMNAS === */
+.dos-columnas {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.columna {
+    flex: 1;
+}
+
+.tres-columnas {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* === TARJETAS === */
+.tarjeta {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 250px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.tarjeta:nth-child(1) { animation-delay: 0s; }
+.tarjeta:nth-child(2) { animation-delay: 0.2s; }
+.tarjeta:nth-child(3) { animation-delay: 0.4s; }
+
+.tarjeta h3 {
+    color: #6C63FF;
+    margin-bottom: 10px;
+}
+
+.tarjeta-proyecto {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 250px;
+}
+
+.tarjeta-proyecto h3 {
+    color: #2D2D3A;
+    margin-bottom: 8px;
+}
+
+/* === TABLA === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+thead {
+    background: #6C63FF;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr {
+    transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #F0EFFF;
+}
+
+/* === FORMULARIO === */
+form label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2D2D3A;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #6C63FF;
+    outline: none;
+}
+
+form .btn {
+    margin-top: 20px;
+}
+
+/* === FOOTER === */
+footer {
+    background: #2D2D3A;
+    color: #ccc;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* === ANIMACIÓN === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE (celulares y tablets)
+   ============================================ */
+@media (max-width: 768px) {
+
+    header .contenedor {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .dos-columnas {
+        flex-direction: column;
+    }
+
+    .tres-columnas {
+        flex-direction: column;
+    }
+
+    .tarjeta, .tarjeta-proyecto {
+        min-width: 100%;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
