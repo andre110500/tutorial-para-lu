@@ -67,6 +67,19 @@
             background: #66BB6A;
             color: #fff;
         }
+        .codigo-panel {
+            position: relative;
+        }
+        .codigo-panel .btn-copiar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        }
+        .codigo-panel pre {
+            padding-top: 54px;
+        }
         .btn-descargar {
             background: #6C63FF;
             color: #fff;
@@ -201,7 +214,6 @@
             <div class="codigo-archivo mostrar" id="file-index">
                 <p class="nombre-archivo">📄 index.html — Página de inicio</p>
                 <div class="toolbar-archivo">
-                    <button class="btn-accion btn-copiar" onclick="copiar('index')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('index')">⬇️ Descargar archivo</button>
                 </div>
                 <div class="vista-toggles">
@@ -209,7 +221,10 @@
                     <button class="vista-btn" onclick="cambiarVista('index', 'preview')">👁️ Vista previa</button>
                 </div>
                 <div id="vista-codigo-index" class="vista-contenido">
-                    <pre><code id="codigo-index"></code></pre>
+                    <div class="codigo-panel">
+                        <button class="btn-accion btn-copiar" onclick="copiar('index')">📋 Copiar código</button>
+                        <pre><code id="codigo-index"></code></pre>
+                    </div>
                 </div>
                 <div id="vista-preview-index" class="vista-contenido oculto">
                     <iframe class="iframe-preview" id="iframe-index" title="Vista previa index.html"></iframe>
@@ -220,7 +235,6 @@
             <div class="codigo-archivo" id="file-proyectos">
                 <p class="nombre-archivo">📄 proyectos.html — Página de proyectos con tabla</p>
                 <div class="toolbar-archivo">
-                    <button class="btn-accion btn-copiar" onclick="copiar('proyectos')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('proyectos')">⬇️ Descargar archivo</button>
                 </div>
                 <div class="vista-toggles">
@@ -228,7 +242,10 @@
                     <button class="vista-btn" onclick="cambiarVista('proyectos', 'preview')">👁️ Vista previa</button>
                 </div>
                 <div id="vista-codigo-proyectos" class="vista-contenido">
-                    <pre><code id="codigo-proyectos"></code></pre>
+                    <div class="codigo-panel">
+                        <button class="btn-accion btn-copiar" onclick="copiar('proyectos')">📋 Copiar código</button>
+                        <pre><code id="codigo-proyectos"></code></pre>
+                    </div>
                 </div>
                 <div id="vista-preview-proyectos" class="vista-contenido oculto">
                     <iframe class="iframe-preview" id="iframe-proyectos" title="Vista previa proyectos.html"></iframe>
@@ -239,7 +256,6 @@
             <div class="codigo-archivo" id="file-contacto">
                 <p class="nombre-archivo">📄 contacto.html — Página de contacto con formulario</p>
                 <div class="toolbar-archivo">
-                    <button class="btn-accion btn-copiar" onclick="copiar('contacto')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('contacto')">⬇️ Descargar archivo</button>
                 </div>
                 <div class="vista-toggles">
@@ -247,7 +263,10 @@
                     <button class="vista-btn" onclick="cambiarVista('contacto', 'preview')">👁️ Vista previa</button>
                 </div>
                 <div id="vista-codigo-contacto" class="vista-contenido">
-                    <pre><code id="codigo-contacto"></code></pre>
+                    <div class="codigo-panel">
+                        <button class="btn-accion btn-copiar" onclick="copiar('contacto')">📋 Copiar código</button>
+                        <pre><code id="codigo-contacto"></code></pre>
+                    </div>
                 </div>
                 <div id="vista-preview-contacto" class="vista-contenido oculto">
                     <iframe class="iframe-preview" id="iframe-contacto" title="Vista previa contacto.html"></iframe>
@@ -258,20 +277,24 @@
             <div class="codigo-archivo" id="file-style">
                 <p class="nombre-archivo">📄 css/style.css — Todos los estilos CSS</p>
                 <div class="toolbar-archivo">
-                    <button class="btn-accion btn-copiar" onclick="copiar('style')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('style')">⬇️ Descargar archivo</button>
                 </div>
-                <pre><code id="codigo-style"></code></pre>
+                <div class="codigo-panel">
+                    <button class="btn-accion btn-copiar" onclick="copiar('style')">📋 Copiar código</button>
+                    <pre><code id="codigo-style"></code></pre>
+                </div>
             </div>
 
             <!-- ==================== README.md ==================== -->
             <div class="codigo-archivo" id="file-readme">
                 <p class="nombre-archivo">📄 README.md — Documentación del proyecto</p>
                 <div class="toolbar-archivo">
-                    <button class="btn-accion btn-copiar" onclick="copiar('readme')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('readme')">⬇️ Descargar archivo</button>
                 </div>
-                <pre><code id="codigo-readme"></code></pre>
+                <div class="codigo-panel">
+                    <button class="btn-accion btn-copiar" onclick="copiar('readme')">📋 Copiar código</button>
+                    <pre><code id="codigo-readme"></code></pre>
+                </div>
             </div>
 
             <!-- Cómo armar el proyecto -->
