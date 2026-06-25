@@ -91,6 +91,54 @@
             margin: 0 0 4px;
             font-size: 1rem;
         }
+        /* === TOGGLE VISTA PREVIA === */
+        .vista-toggles {
+            display: flex;
+            gap: 4px;
+            margin: 10px 0;
+            background: #E8ECF1;
+            border-radius: 10px;
+            padding: 3px;
+            width: fit-content;
+        }
+        .vista-btn {
+            padding: 6px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+            background: transparent;
+            color: #7F8C9B;
+        }
+        .vista-btn.activo-vista {
+            background: #fff;
+            color: #2C3E50;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .vista-btn:hover:not(.activo-vista) {
+            color: #2C3E50;
+        }
+        .vista-contenido {
+            display: block;
+        }
+        .vista-contenido.oculto {
+            display: none;
+        }
+        .iframe-preview {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #E8ECF1;
+            border-radius: 12px;
+            background: #fff;
+        }
+        @media (max-width: 768px) {
+            .iframe-preview {
+                height: 350px;
+            }
+        }
         .toast {
             position: fixed;
             bottom: 30px;
@@ -137,7 +185,7 @@
             <!-- Botón descargar todo -->
             <div style="text-align:center;margin-bottom:10px">
                 <button class="btn btn-descargar-todo" onclick="descargarTodo()">📥 Descargar todos los archivos</button>
-                <p style="font-size:0.85rem;color:#7F8C9B;margin-top:6px">Se descargarán los 5 archivos uno por uno</p>
+                <p style="font-size:0.85rem;color:#7F8C9B;margin-top:6px">Se descargarán los 5 archivos de código. Las imágenes están en codigo-completo/imagenes.</p>
             </div>
 
             <!-- TABS -->
@@ -156,7 +204,16 @@
                     <button class="btn-accion btn-copiar" onclick="copiar('index')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('index')">⬇️ Descargar archivo</button>
                 </div>
-                <pre><code id="codigo-index"></code></pre>
+                <div class="vista-toggles">
+                    <button class="vista-btn activo-vista" onclick="cambiarVista('index', 'codigo')">📄 Código</button>
+                    <button class="vista-btn" onclick="cambiarVista('index', 'preview')">👁️ Vista previa</button>
+                </div>
+                <div id="vista-codigo-index" class="vista-contenido">
+                    <pre><code id="codigo-index"></code></pre>
+                </div>
+                <div id="vista-preview-index" class="vista-contenido oculto">
+                    <iframe class="iframe-preview" id="iframe-index" title="Vista previa index.html"></iframe>
+                </div>
             </div>
 
             <!-- ==================== proyectos.html ==================== -->
@@ -166,7 +223,16 @@
                     <button class="btn-accion btn-copiar" onclick="copiar('proyectos')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('proyectos')">⬇️ Descargar archivo</button>
                 </div>
-                <pre><code id="codigo-proyectos"></code></pre>
+                <div class="vista-toggles">
+                    <button class="vista-btn activo-vista" onclick="cambiarVista('proyectos', 'codigo')">📄 Código</button>
+                    <button class="vista-btn" onclick="cambiarVista('proyectos', 'preview')">👁️ Vista previa</button>
+                </div>
+                <div id="vista-codigo-proyectos" class="vista-contenido">
+                    <pre><code id="codigo-proyectos"></code></pre>
+                </div>
+                <div id="vista-preview-proyectos" class="vista-contenido oculto">
+                    <iframe class="iframe-preview" id="iframe-proyectos" title="Vista previa proyectos.html"></iframe>
+                </div>
             </div>
 
             <!-- ==================== contacto.html ==================== -->
@@ -176,7 +242,16 @@
                     <button class="btn-accion btn-copiar" onclick="copiar('contacto')">📋 Copiar código</button>
                     <button class="btn-accion btn-descargar" onclick="descargar('contacto')">⬇️ Descargar archivo</button>
                 </div>
-                <pre><code id="codigo-contacto"></code></pre>
+                <div class="vista-toggles">
+                    <button class="vista-btn activo-vista" onclick="cambiarVista('contacto', 'codigo')">📄 Código</button>
+                    <button class="vista-btn" onclick="cambiarVista('contacto', 'preview')">👁️ Vista previa</button>
+                </div>
+                <div id="vista-codigo-contacto" class="vista-contenido">
+                    <pre><code id="codigo-contacto"></code></pre>
+                </div>
+                <div id="vista-preview-contacto" class="vista-contenido oculto">
+                    <iframe class="iframe-preview" id="iframe-contacto" title="Vista previa contacto.html"></iframe>
+                </div>
             </div>
 
             <!-- ==================== style.css ==================== -->
@@ -210,9 +285,13 @@
 ├── contacto.html
 ├── css/
 │   └── style.css
-├── imagenes/        (opcional: tus fotos)
+├── imagenes/
+│   ├── studio-lu-nails.png
+│   ├── diseno-floral.png
+│   ├── francesa-glitter.png
+│   └── marmol-oro.png
 └── README.md</code></pre>
-                    <p style="margin:10px 0 0">Abrí cada archivo con el bloc de notas y pegá el código que copiaste. ¡Listo!</p>
+                    <p style="margin:10px 0 0">Abrí cada archivo con el bloc de notas, pegá el código que copiaste y copiá también la carpeta de imágenes. ¡Listo!</p>
                 </div>
             </div>
 
@@ -246,18 +325,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portfolio - Inicio</title>
+    <title>Lu Nails Studio - Inicio</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <header>
         <div class="contenedor">
-            <a href="index.html" class="logo">Lu Studio</a>
+            <a href="index.html" class="logo">Lu Nails</a>
             <nav>
                 <ul>
                     <li><a href="index.html" class="activo">Inicio</a></li>
-                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="proyectos.html">Servicios</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
@@ -265,73 +343,76 @@
     </header>
 
     <section class="hero">
-        <div class="contenedor">
-            <h1>Hola, soy Lu</h1>
-            <p>Diseñadora gráfica y desarrolladora web en formación.</p>
-            <a href="proyectos.html" class="btn">Ver mis proyectos</a>
+        <div class="contenedor hero-contenido">
+            <span class="etiqueta">Manicura y nail art</span>
+            <h1>Lu Nails Studio</h1>
+            <p>Diseños delicados, uñas cuidadas y turnos personalizados para que tus manos hablen de tu estilo.</p>
+            <a href="proyectos.html" class="btn">Ver servicios</a>
         </div>
     </section>
 
-    <section class="seccion">
-        <div class="contenedor">
-            <h2>Sobre mí</h2>
-            <div class="dos-columnas">
-                <div class="columna">
-                    <p>Soy estudiante de diseño y programación web. Me encanta crear sitios web que cuenten historias.</p>
-                </div>
-                <div class="columna">
-                    <p>Este es mi primer proyecto web hecho con HTML y CSS.</p>
+    <main>
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Sobre mí</h2>
+                <div class="dos-columnas">
+                    <div class="columna">
+                        <img src="imagenes/studio-lu-nails.png" alt="Mesa de trabajo de Lu Nails Studio" class="img-perfil">
+                    </div>
+                    <div class="columna texto-destacado">
+                        <p>¡Hola! Soy Lu, nail artist apasionada por el arte en uñas. Hace 3 años me dedico a embellecer manos y pies con diseños únicos y personalizados.</p>
+                        <p>Trabajo con materiales de primera calidad y sigo medidas de higiene para que cada turno sea cómodo, seguro y prolijo.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="seccion fondo-claro">
-        <div class="contenedor">
-            <h2>Mis habilidades</h2>
-            <div class="tres-columnas">
-                <div class="tarjeta">
-                    <h3>Diseño gráfico</h3>
-                    <p>Creación de logos y piezas visuales.</p>
-                </div>
-                <div class="tarjeta">
-                    <h3>HTML & CSS</h3>
-                    <p>Maquetación de sitios web responsivos.</p>
-                </div>
-                <div class="tarjeta">
-                    <h3>Creatividad</h3>
-                    <p>Ideas originales para proyectos reales.</p>
+        <section class="seccion fondo-claro">
+            <div class="contenedor">
+                <h2>Mis servicios</h2>
+                <div class="tres-columnas">
+                    <article class="tarjeta">
+                        <h3>Manicure</h3>
+                        <p>Manicure completa con esmaltado semipermanente. Duración de 2 a 3 semanas impecable.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <h3>Esculpidas en gel</h3>
+                        <p>Uñas esculpidas en gel con diseños personalizados. Larga duración y aspecto natural.</p>
+                    </article>
+                    <article class="tarjeta">
+                        <h3>Nail art</h3>
+                        <p>Diseños artísticos únicos: flores, mármol, glitter, francesa y mucho más.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <div class="contenedor">
-            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Lu Nails Studio. Todos los derechos reservados.</p>
         </div>
     </footer>
-
 </body>
-</html>`,
+</html>
+`,
 
             proyectos: `<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portfolio - Proyectos</title>
+    <title>Lu Nails Studio - Servicios</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <header>
         <div class="contenedor">
-            <a href="index.html" class="logo">Lu Studio</a>
+            <a href="index.html" class="logo">Lu Nails</a>
             <nav>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
-                    <li><a href="proyectos.html" class="activo">Proyectos</a></li>
+                    <li><a href="proyectos.html" class="activo">Servicios</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
@@ -339,95 +420,107 @@
     </header>
 
     <section class="hero hero-pequeno">
-        <div class="contenedor">
-            <h1>Mis proyectos</h1>
-            <p>Conocé los trabajos que fui realizando.</p>
+        <div class="contenedor hero-contenido">
+            <span class="etiqueta">Servicios</span>
+            <h1>Mis trabajos</h1>
+            <p>Algunos diseños realizados para clientas que buscaban uñas lindas, prolijas y duraderas.</p>
         </div>
     </section>
 
-    <section class="seccion">
-        <div class="contenedor">
-            <h2>Proyectos destacados</h2>
-            <div class="tres-columnas">
-                <article class="tarjeta-proyecto">
-                    <h3>Branding para cafetería</h3>
-                    <p>Identidad visual completa.</p>
-                </article>
-                <article class="tarjeta-proyecto">
-                    <h3>Landing page evento</h3>
-                    <p>Sitio promocional responsivo.</p>
-                </article>
-                <article class="tarjeta-proyecto">
-                    <h3>Rediseño de blog</h3>
-                    <p>Modernización de interfaz.</p>
-                </article>
+    <main>
+        <section class="seccion">
+            <div class="contenedor">
+                <h2>Diseños destacados</h2>
+                <div class="tres-columnas">
+                    <article class="tarjeta-proyecto">
+                        <img src="imagenes/diseno-floral.png" alt="Diseño floral de uñas en tonos pastel">
+                        <h3>Diseño floral</h3>
+                        <p>Uñas esculpidas con flores en tonos pastel. Ideal para un look delicado y femenino.</p>
+                    </article>
+                    <article class="tarjeta-proyecto">
+                        <img src="imagenes/francesa-glitter.png" alt="Manicure francesa con detalles de glitter">
+                        <h3>Francesa con glitter</h3>
+                        <p>Manicure semipermanente con francesa moderna y detalles brillantes.</p>
+                    </article>
+                    <article class="tarjeta-proyecto">
+                        <img src="imagenes/marmol-oro.png" alt="Diseño marmolado con detalles dorados">
+                        <h3>Mármol y oro</h3>
+                        <p>Diseño marmolado en uñas esculpidas con líneas doradas y acabado elegante.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="seccion fondo-claro">
-        <div class="contenedor">
-            <h2>Tabla de servicios y precios</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Servicio</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Diseño de logo</td>
-                        <td>Logo profesional con 3 propuestas</td>
-                        <td>$15.000</td>
-                    </tr>
-                    <tr>
-                        <td>Landing page</td>
-                        <td>Página web responsiva</td>
-                        <td>$25.000</td>
-                    </tr>
-                    <tr>
-                        <td>Sitio web completo</td>
-                        <td>Hasta 5 páginas HTML</td>
-                        <td>$50.000</td>
-                    </tr>
-                    <tr>
-                        <td>Branding completo</td>
-                        <td>Logo, colores y piezas gráficas</td>
-                        <td>$35.000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+        <section class="seccion fondo-claro">
+            <div class="contenedor">
+                <h2>Lista de precios</h2>
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Descripción</th>
+                                <th>Tiempo</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manicure básica</td>
+                                <td>Limpieza, cutículas y esmaltado tradicional</td>
+                                <td>45 min</td>
+                                <td>$5.000</td>
+                            </tr>
+                            <tr>
+                                <td>Semipermanente</td>
+                                <td>Esmaltado semipermanente con diseño simple</td>
+                                <td>1 hora</td>
+                                <td>$8.000</td>
+                            </tr>
+                            <tr>
+                                <td>Esculpidas en gel</td>
+                                <td>Uñas esculpidas con diseño a elección</td>
+                                <td>2 horas</td>
+                                <td>$15.000</td>
+                            </tr>
+                            <tr>
+                                <td>Nail art personalizado</td>
+                                <td>Diseño único por mano: flores, mármol, glitter o francesa</td>
+                                <td>1 hora</td>
+                                <td>$10.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="contenedor">
-            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Lu Nails Studio. Todos los derechos reservados.</p>
         </div>
     </footer>
-
 </body>
-</html>`,
+</html>
+`,
 
             contacto: `<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portfolio - Contacto</title>
+    <title>Lu Nails Studio - Contacto</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <header>
         <div class="contenedor">
-            <a href="index.html" class="logo">Lu Studio</a>
+            <a href="index.html" class="logo">Lu Nails</a>
             <nav>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
-                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="proyectos.html">Servicios</a></li>
                     <li><a href="contacto.html" class="activo">Contacto</a></li>
                 </ul>
             </nav>
@@ -435,40 +528,53 @@
     </header>
 
     <section class="hero hero-pequeno">
-        <div class="contenedor">
-            <h1>Contactame</h1>
-            <p>Completá el formulario y te respondo a la brevedad.</p>
+        <div class="contenedor hero-contenido">
+            <span class="etiqueta">Contacto</span>
+            <h1>Reservá tu turno</h1>
+            <p>Completá el formulario y te confirmo el día y horario disponible.</p>
         </div>
     </section>
 
-    <section class="seccion">
-        <div class="contenedor">
-            <h2>Formulario de contacto</h2>
-            <form action="#" method="POST">
+    <main>
+        <section class="seccion">
+            <div class="contenedor contenedor-formulario">
+                <h2>Pedí tu turno</h2>
+                <form action="#" method="POST">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Lu García" required>
 
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" required>
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ej: lu@email.com" required>
 
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" required>
+                    <label for="telefono">WhatsApp</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 1234-5678" required>
 
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    <label for="servicio">Servicio que querés</label>
+                    <select id="servicio" name="servicio">
+                        <option value="manicure">Manicure básica</option>
+                        <option value="semi">Semipermanente</option>
+                        <option value="esculpidas">Esculpidas en gel</option>
+                        <option value="nailart">Nail art personalizado</option>
+                        <option value="consulta">Consulta / Otro</option>
+                    </select>
 
-                <button type="submit" class="btn">Enviar mensaje</button>
+                    <label for="mensaje">Contame qué diseño te gustaría</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contame tus ideas, colores o referencias..." required></textarea>
 
-            </form>
-        </div>
-    </section>
+                    <button type="submit" class="btn">Enviar turno</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="contenedor">
-            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Lu Nails Studio. Todos los derechos reservados.</p>
         </div>
     </footer>
-
 </body>
-</html>`,
+</html>
+`,
 
             style: `/* === RESET === */
 * {
@@ -477,11 +583,23 @@
     box-sizing: border-box;
 }
 
+:root {
+    --rosa: #d86f87;
+    --rosa-oscuro: #9d4055;
+    --coral: #ef9a8a;
+    --crema: #fff8f4;
+    --lavanda: #8b7ab8;
+    --texto: #332c35;
+    --gris: #6f6571;
+    --borde: #f1d8d8;
+    --sombra: 0 12px 30px rgba(117, 65, 78, 0.12);
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    color: #333;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: var(--texto);
     line-height: 1.6;
-    background: #fff;
+    background: #fffdfb;
 }
 
 .contenedor {
@@ -492,67 +610,88 @@ body {
 
 /* === CABECERA === */
 header {
-    background: #2D2D3A;
-    padding: 15px 0;
+    background: rgba(255, 253, 251, 0.96);
+    border-bottom: 1px solid var(--borde);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 header .contenedor {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .logo {
-    color: #fff;
+    color: var(--rosa-oscuro);
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 800;
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.logo:hover {
-    color: #6C63FF;
+    letter-spacing: 0;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
 nav a {
-    color: #ccc;
+    color: var(--gris);
     text-decoration: none;
-    padding: 5px 10px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 999px;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
-nav a:hover {
-    color: #fff;
-}
-
+nav a:hover,
 nav a.activo {
-    color: #6C63FF;
-    border-bottom: 2px solid #6C63FF;
+    color: var(--rosa-oscuro);
+    background: #ffe8ee;
 }
 
 /* === HERO === */
 .hero {
-    background: linear-gradient(135deg, #6C63FF, #FF6584);
+    min-height: 430px;
+    display: flex;
+    align-items: center;
     color: #fff;
     text-align: center;
-    padding: 100px 0;
+    padding: 80px 0;
+    background:
+        linear-gradient(rgba(88, 38, 50, 0.46), rgba(88, 38, 50, 0.46)),
+        url("../imagenes/studio-lu-nails.png") center / cover;
+}
+
+.hero-contenido {
+    max-width: 720px;
+}
+
+.etiqueta {
+    display: inline-block;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 999px;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.16);
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.3rem;
     margin-bottom: 15px;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
     animation: fadeIn 0.8s ease;
 }
 
 .hero p {
     font-size: 1.2rem;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto 25px;
     animation: fadeIn 0.8s ease 0.2s both;
 }
@@ -562,74 +701,102 @@ nav a.activo {
 }
 
 .hero-pequeno {
+    min-height: 280px;
     padding: 60px 0;
 }
 
 .hero-pequeno h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
 }
 
 /* === BOTONES === */
 .btn {
     display: inline-block;
-    background: #fff;
-    color: #6C63FF;
-    padding: 12px 30px;
-    border-radius: 30px;
+    background: var(--rosa);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 999px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 800;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    background: var(--rosa-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(157, 64, 85, 0.24);
 }
 
 /* === SECCIONES === */
 .seccion {
-    padding: 60px 0;
+    padding: 65px 0;
 }
 
 .fondo-claro {
-    background: #F5F5FA;
+    background: var(--crema);
 }
 
 .seccion h2 {
     text-align: center;
     font-size: 2rem;
-    color: #2D2D3A;
-    margin-bottom: 40px;
+    color: var(--rosa-oscuro);
+    margin-bottom: 36px;
 }
 
 /* === COLUMNAS === */
 .dos-columnas {
     display: flex;
-    gap: 40px;
-    align-items: flex-start;
+    gap: 42px;
+    align-items: center;
 }
 
 .columna {
     flex: 1;
 }
 
+.texto-destacado {
+    font-size: 1.06rem;
+    color: var(--gris);
+}
+
+.texto-destacado p + p {
+    margin-top: 16px;
+}
+
+.img-perfil {
+    width: 100%;
+    max-width: 430px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: var(--sombra);
+}
+
 .tres-columnas {
     display: flex;
-    gap: 30px;
+    gap: 24px;
     flex-wrap: wrap;
 }
 
 /* === TARJETAS === */
-.tarjeta {
+.tarjeta,
+.tarjeta-proyecto {
     background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    box-shadow: var(--sombra);
     flex: 1;
     min-width: 250px;
+    overflow: hidden;
+}
+
+.tarjeta {
+    padding: 28px;
+    text-align: center;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
 }
@@ -638,49 +805,66 @@ nav a.activo {
 .tarjeta:nth-child(2) { animation-delay: 0.2s; }
 .tarjeta:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.tarjeta h3 {
-    color: #6C63FF;
+.tarjeta h3,
+.tarjeta-proyecto h3 {
+    color: var(--rosa-oscuro);
     margin-bottom: 10px;
 }
 
+.tarjeta p,
+.tarjeta-proyecto p {
+    color: var(--gris);
+}
+
 .tarjeta-proyecto {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    flex: 1;
-    min-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-proyecto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(117, 65, 78, 0.16);
+}
+
+.tarjeta-proyecto img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
 }
 
 .tarjeta-proyecto h3 {
-    color: #2D2D3A;
-    margin-bottom: 8px;
+    padding: 18px 20px 0;
+}
+
+.tarjeta-proyecto p {
+    padding: 0 20px 22px;
+    font-size: 0.95rem;
 }
 
 /* === TABLA === */
+.tabla-contenedor {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
 table {
     width: 100%;
+    min-width: 680px;
     border-collapse: collapse;
     background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 thead {
-    background: #6C63FF;
+    background: var(--rosa-oscuro);
     color: #fff;
 }
 
-th, td {
-    padding: 12px 15px;
+th,
+td {
+    padding: 13px 15px;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--borde);
 }
 
 tbody tr {
@@ -688,16 +872,32 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background: #F0EFFF;
+    background: #fff1f4;
 }
 
 /* === FORMULARIO === */
+.contenedor-formulario {
+    max-width: 760px;
+}
+
+form {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: var(--sombra);
+}
+
 form label {
     display: block;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #2D2D3A;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--rosa-oscuro);
+}
+
+form label:first-child {
+    margin-top: 0;
 }
 
 form input,
@@ -705,101 +905,112 @@ form select,
 form textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #ddd;
+    border: 2px solid #f0dede;
     border-radius: 8px;
     font-size: 1rem;
     font-family: inherit;
-    transition: border-color 0.3s ease;
+    color: var(--texto);
+    background: #fffdfb;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 form input:focus,
 form select:focus,
 form textarea:focus {
-    border-color: #6C63FF;
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 4px rgba(216, 111, 135, 0.14);
     outline: none;
 }
 
 form .btn {
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
 /* === FOOTER === */
 footer {
-    background: #2D2D3A;
-    color: #ccc;
+    background: var(--texto);
+    color: #f7e8e7;
     text-align: center;
-    padding: 30px 0;
-    margin-top: 40px;
+    padding: 28px 0;
 }
 
-footer p {
-    margin: 5px 0;
+/* === ANIMACION === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* === RESPONSIVE === */
+/* ============================================
+   RESPONSIVE (celulares y tablets)
+   ============================================ */
 @media (max-width: 768px) {
+    header {
+        position: static;
+    }
 
     header .contenedor {
         flex-direction: column;
-        gap: 10px;
     }
 
     nav ul {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .hero {
-        padding: 60px 0;
+        min-height: 360px;
+        padding: 55px 0;
     }
 
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .hero p {
         font-size: 1rem;
     }
 
-    .dos-columnas {
-        flex-direction: column;
-    }
-
+    .dos-columnas,
     .tres-columnas {
         flex-direction: column;
     }
 
-    .tarjeta, .tarjeta-proyecto {
+    .tarjeta,
+    .tarjeta-proyecto {
         min-width: 100%;
     }
 
-    th, td {
-        padding: 8px 10px;
-        font-size: 0.9rem;
+    form {
+        padding: 22px;
     }
-}`,
+}
+`,
 
-            readme: `# Nombre del proyecto
+            readme: `# Lu Nails Studio
 
-[Escribí acá el nombre de su proyecto]
+Sitio web estático para un emprendimiento ficticio de uñas: manicure, esculpidas en gel y nail art personalizado.
 
-## Descripción breve
+## Integrantes
 
-[Escribí acá de qué trata el sitio]
+| Nombre | Rol |
+|--------|-----|
+| [Nombre] | Diseño visual |
+| [Nombre] | Maquetación HTML |
+| [Nombre] | Estilos CSS y documentación |
 
-## Integrantes del grupo
+## Cómo visualizar
 
-| Nombre completo | Rol |
-|----------------|-----|
-| [Nombre] | [Rol] |
-| [Nombre] | [Rol] |
-
-## Instrucciones para visualizar
-
-1. Descargar o clonar el repositorio
-2. Abrir index.html en cualquier navegador
-3. Navegar usando el menú`
+1. Descargar la carpeta completa.
+2. Abrir \`index.html\` en cualquier navegador.
+3. Navegar con el menú superior.
+`
         };
 
         const NOMBRES_ARCHIVO = {
@@ -809,6 +1020,48 @@ footer p {
             style: 'style.css',
             readme: 'README.md'
         };
+
+        // ============================================
+        // GENERAR HTML COMPLETO PARA VISTA PREVIA
+        // ============================================
+        function obtenerPreviewUrl(id) {
+            const paginas = {
+                index: 'codigo-completo/index.html',
+                proyectos: 'codigo-completo/proyectos.html',
+                contacto: 'codigo-completo/contacto.html'
+            };
+            return paginas[id];
+        }
+
+        // ============================================
+        // CAMBIAR ENTRE CÓDIGO Y VISTA PREVIA
+        // ============================================
+        function cambiarVista(id, modo) {
+
+            const contenedor = document.getElementById('file-' + id);
+            const toggles = contenedor.querySelectorAll('.vista-btn');
+            toggles.forEach(t => t.classList.remove('activo-vista'));
+
+            // Activar el botón correcto
+            toggles.forEach(t => {
+                if (t.textContent.includes(modo === 'codigo' ? 'Código' : 'previa')) {
+                    t.classList.add('activo-vista');
+                }
+            });
+
+            // Mostrar/ocultar vistas
+            document.getElementById('vista-codigo-' + id).classList.toggle('oculto', modo !== 'codigo');
+            document.getElementById('vista-preview-' + id).classList.toggle('oculto', modo !== 'preview');
+
+            // Si es preview, cargar el iframe
+            if (modo === 'preview') {
+                const iframe = document.getElementById('iframe-' + id);
+                if (!iframe.getAttribute('data-cargado')) {
+                    iframe.setAttribute('src', obtenerPreviewUrl(id));
+                    iframe.setAttribute('data-cargado', '1');
+                }
+            }
+        }
 
         // ============================================
         // MOSTRAR CÓDIGO EN LA PÁGINA (escapando HTML)

@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lu Studio - Contacto</title>
+    <title>Lu Nails Studio - Contacto</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <div class="contenedor">
-            <a href="index.html" class="logo">Lu Studio</a>
+            <a href="index.html" class="logo">Lu Nails</a>
             <nav>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
-                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="proyectos.html">Servicios</a></li>
                     <li><a href="contacto.html" class="activo">Contacto</a></li>
                 </ul>
             </nav>
@@ -21,46 +21,48 @@
     </header>
 
     <section class="hero hero-pequeno">
-        <div class="contenedor">
-            <h1>Contactame</h1>
-            <p>Completá el formulario y te respondo a la brevedad.</p>
+        <div class="contenedor hero-contenido">
+            <span class="etiqueta">Contacto</span>
+            <h1>Reservá tu turno</h1>
+            <p>Completá el formulario y te confirmo el día y horario disponible.</p>
         </div>
     </section>
 
-    <section class="seccion">
-        <div class="contenedor">
-            <h2>Formulario de contacto</h2>
-            <form action="#" method="POST">
+    <main>
+        <section class="seccion">
+            <div class="contenedor contenedor-formulario">
+                <h2>Pedí tu turno</h2>
+                <form action="#" method="POST">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Lu García" required>
 
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej: Lu García" required>
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ej: lu@email.com" required>
 
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" placeholder="Ej: lu@ejemplo.com" required>
+                    <label for="telefono">WhatsApp</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 1234-5678" required>
 
-                <label for="telefono">Teléfono (opcional)</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 11 1234-5678">
+                    <label for="servicio">Servicio que querés</label>
+                    <select id="servicio" name="servicio">
+                        <option value="manicure">Manicure básica</option>
+                        <option value="semi">Semipermanente</option>
+                        <option value="esculpidas">Esculpidas en gel</option>
+                        <option value="nailart">Nail art personalizado</option>
+                        <option value="consulta">Consulta / Otro</option>
+                    </select>
 
-                <label for="motivo">Motivo del contacto</label>
-                <select id="motivo" name="motivo">
-                    <option value="consulta">Consulta</option>
-                    <option value="presupuesto">Pedir presupuesto</option>
-                    <option value="colaboracion">Propuesta de colaboración</option>
-                    <option value="otro">Otro</option>
-                </select>
+                    <label for="mensaje">Contame qué diseño te gustaría</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contame tus ideas, colores o referencias..." required></textarea>
 
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribí tu mensaje acá..." required></textarea>
-
-                <button type="submit" class="btn">Enviar mensaje</button>
-
-            </form>
-        </div>
-    </section>
+                    <button type="submit" class="btn">Enviar turno</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="contenedor">
-            <p>&copy; 2026 Lu Studio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Lu Nails Studio. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>

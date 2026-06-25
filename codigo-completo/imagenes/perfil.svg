@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
-  <rect width="300" height="300" fill="#6C63FF" rx="15"/>
-  <circle cx="150" cy="110" r="50" fill="#fff" opacity="0.9"/>
-  <ellipse cx="150" cy="240" rx="80" ry="60" fill="#fff" opacity="0.9"/>
-  <text x="150" y="300" text-anchor="middle" fill="#fff" font-size="14" font-family="Arial">Foto de perfil</text>
-</svg>
